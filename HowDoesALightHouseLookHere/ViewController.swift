@@ -10,6 +10,7 @@ import UIKit
 import ARKit
 import AFNetworking
 import CoreLocation
+import Network
 
 class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate {
 
@@ -101,7 +102,8 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         sceneView.session.getCurrentWorldMap { (worldMap, error) in
             let latitude = self.getCurrentCoord()?.latitude
             let longitude = self.getCurrentCoord()?.longitude
-            
+            let networkObject = Network()
+            networkObject.sendJSONDataToServer()
 //            guard let worldMap = worldMap else {
 //                return print("error getting current world map")
 //                return self.setLabel(text: "Error getting current world map.")
