@@ -74,11 +74,16 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     // MARK: - ARSKViewDelegate
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        // Create and configure a node for the anchor added to the view's session.
-        let labelNode = SKLabelNode(text: "👾")
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        return labelNode;
+        let lighthouse = SKSpriteNode(imageNamed: "PeggysCove")
+        
+        let scaledHeight = lighthouse.size.height * 0.10
+        let scaledWidth = lighthouse.size.width * 0.10
+        lighthouse.zPosition = 100
+        
+        lighthouse.size.height = scaledHeight
+        lighthouse.size.width = scaledWidth
+    
+        return lighthouse
     }
 
     func session(_ session: ARSession, didFailWithError error: Error) {}
@@ -87,7 +92,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     
     @IBAction func saveWorldMapButton(_ sender: Any) {
         sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            // FIXME handle nil values
             let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
             let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
             var worldMapString: String?
