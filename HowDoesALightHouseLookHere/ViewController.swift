@@ -90,14 +90,12 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             // FIXME handle nil values
             let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
             let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
-            let worldMapString: NSString?
+            var worldMapString: String?
             
             do {
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
-                worldMapString = NSString(format: "%@", worldMap!)
-//                NSLog("%@", worldMapString!)
-                
+                worldMapString = data.base64EncodedString()
                 let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
             } catch {
                 // FIXME handle this
@@ -126,9 +124,9 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     class SavedLighthouse {
         var longitude: Double
         var latitude: Double
-        var worldMap: NSString
+        var worldMap: String
         
-        init(longitude: Double, latitude: Double, worldMap: NSString) {
+        init(longitude: Double, latitude: Double, worldMap: String) {
             self.longitude = longitude
             self.latitude = latitude
             self.worldMap = worldMap
