@@ -81,40 +81,27 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         return labelNode;
     }
 
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-
-    }
-
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-
-    }
-
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-
-    }
-    
+    func session(_ session: ARSession, didFailWithError error: Error) {}
+    func sessionWasInterrupted(_ session: ARSession) {}
+    func sessionInterruptionEnded(_ session: ARSession) {}
     
     @IBAction func saveWorldMapButton(_ sender: Any) {
         sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            let latitude = self.getCurrentCoord()?.latitude
-            let longitude = self.getCurrentCoord()?.longitude
+            // FIXME handle nil values
+            let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
+            let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
+            let worldMapString: NSString?
             
-//            guard let worldMap = worldMap else {
-//                return print("error getting current world map")
-//                return self.setLabel(text: "Error getting current world map.")
-//            }
-//
-//            do {
-//                try self.archive(worldMap: worldMap)
-//                DispatchQueue.main.async {
-//                    self.setLabel(text: "World map is saved.")
-//                }
-//            } catch {
-//                fatalError("Error saving world map: \(error.localizedDescription)")
-//            }
+            do {
+                // FIXME lots of unsafe nils here
+                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
+                worldMapString = NSString(format: "%@", worldMap!)
+//                NSLog("%@", worldMapString!)
+                
+                let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+            } catch {
+                // FIXME handle this
+            }
         }
     }
     
@@ -135,8 +122,39 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         locationManager.startUpdatingLocation()
     }
     
-    
+    // Represents a saved LightHouse either being saved or fetched
+    class SavedLighthouse {
+        var longitude: Double
+        var latitude: Double
+        var worldMap: NSString
+        
+        init(longitude: Double, latitude: Double, worldMap: NSString) {
+            self.longitude = longitude
+            self.latitude = latitude
+            self.worldMap = worldMap
+        }
+        
+        // Converts a lighthouse into a JSON object for the server
+        func toJson() -> [String: Any] {
+            let jsonObject: [String: Any] = [
+                "latitude" : self.latitude,
+                "longitude" : self.longitude,
+                "worldMap" : worldMap
+            ]
+            
+            let valid = JSONSerialization.isValidJSONObject(jsonObject)
+            
+            if (valid) {
+                return jsonObject
+            } else {
+                // FIXME handle this
+                return ["": ""]
+            }
+        }
+        
+        // Converts fetched JSON from the server into a SavedLightHouse instance
+//        static func fromJson() -> SavedLighthouse {
+//            // TODO
+//        }
+    }
 }
-
-
-
