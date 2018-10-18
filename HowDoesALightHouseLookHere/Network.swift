@@ -10,18 +10,19 @@ import Foundation
 import AFNetworking
 
 class Network: NSObject {
+    let serverURL = "https://lighthousehack.herokuapp.com/api/worldmap"
 
-//    func sendJSONDataToServer(_mapJson:NSObject, _serverUrl:NSURL) {
-    func sendJSONDataToServer (){
+    func sendDataToServer(_mapObject:NSDictionary) {
         let manager = AFHTTPSessionManager()
-        let URLString = " https://lighthousehack.herokuapp.com/api/worldmap"
-        let mapData = ["latitude":12.1234, "longitude":21.12345, "workdMap":"abcdefg"] as [String : Any]
-        let jsonData = try? JSONSerialization.data(withJSONObject: mapData, options: [])
-        let jsonString = String(data: jsonData!, encoding: .utf8)
-        NSLog(jsonString!)
-        manager.post(URLString, parameters: <#T##Any?#>, progress: <#T##((Progress) -> Void)?##((Progress) -> Void)?##(Progress) -> Void#>, success: <#T##((URLSessionDataTask, Any?) -> Void)?##((URLSessionDataTask, Any?) -> Void)?##(URLSessionDataTask, Any?) -> Void#>, failure: <#T##((URLSessionDataTask?, Error) -> Void)?##((URLSessionDataTask?, Error) -> Void)?##(URLSessionDataTask?, Error) -> Void#>)
+        manager.post(serverURL,
+                     parameters: _mapObject, progress: nil,
+                     success: { (URLSessionDataTask, Any) in
+                        print("success")
+        },
+                     failure: { (URLSessionDataTask, Error) in
+                        print("failure" + Error.localizedDescription)
 
-
+        })
     }
 
   

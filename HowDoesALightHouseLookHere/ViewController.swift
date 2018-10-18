@@ -98,7 +98,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
                 let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
-                networkObject.sendJSONDataToServer()
+                networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
 
             } catch {
                 // FIXME handle this
@@ -136,21 +136,13 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         // Converts a lighthouse into a JSON object for the server
-        func toJson() -> [String: Any] {
-            let jsonObject: [String: Any] = [
+        func toMap() -> NSDictionary {
+            let mapObject: NSDictionary = [
                 "latitude" : self.latitude,
                 "longitude" : self.longitude,
                 "worldMap" : worldMap
             ]
-            
-            let valid = JSONSerialization.isValidJSONObject(jsonObject)
-            
-            if (valid) {
-                return jsonObject
-            } else {
-                // FIXME handle this
-                return ["": ""]
-            }
+            return mapObject
         }
         
         // Converts fetched JSON from the server into a SavedLightHouse instance
