@@ -76,11 +76,14 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         let lighthouse = SKSpriteNode(imageNamed: "PeggysCove")
         
-        let scaledHeight = lighthouse.size.height * 0.25
-        let scaledWidth = lighthouse.size.width * 0.25
+        let scaledHeight = lighthouse.size.height * 0.10
+        let scaledWidth = lighthouse.size.width * 0.10
+        lighthouse.zPosition = 100
         
-        lighthouse.size.height
+        lighthouse.size.height = scaledHeight
+        lighthouse.size.width = scaledWidth
         
+        // TODO var anchorPoint: CGPoint where pointed
         
         
 //        lighthouse.position = CGPoint(x: 100, y: 100)
