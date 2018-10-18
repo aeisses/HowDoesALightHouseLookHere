@@ -13,8 +13,10 @@
 		041A838121779A6C00B2D3E8 /* HowDoesALightHouseLookHere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 041A837F21779A6C00B2D3E8 /* HowDoesALightHouseLookHere.xcdatamodeld */; };
 		041A838321779A6D00B2D3E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041A838221779A6D00B2D3E8 /* Assets.xcassets */; };
 		041A838621779A6D00B2D3E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041A838421779A6D00B2D3E8 /* LaunchScreen.storyboard */; };
+		A718F9242178D11700A9A9B0 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A718F9232178D11700A9A9B0 /* AFNetworking.framework */; };
 		A7B438442178C5410077733A /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B438422178C5410077733A /* Scene.swift */; };
 		A7B438452178C5410077733A /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7B438432178C5410077733A /* Scene.sks */; };
+		BC8767A422C49F67F7111E04 /* Pods_HowDoesALightHouseLookHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975F3DFD168F5815BD57F81F /* Pods_HowDoesALightHouseLookHere.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,11 @@
 		041A838221779A6D00B2D3E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041A838521779A6D00B2D3E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041A838721779A6D00B2D3E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E20FE5521C9A3CDB16DB44E /* Pods-HowDoesALightHouseLookHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowDoesALightHouseLookHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-HowDoesALightHouseLookHere/Pods-HowDoesALightHouseLookHere.release.xcconfig"; sourceTree = "<group>"; };
+		8A654D5622B368342FA4BA05 /* Pods-HowDoesALightHouseLookHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowDoesALightHouseLookHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HowDoesALightHouseLookHere/Pods-HowDoesALightHouseLookHere.debug.xcconfig"; sourceTree = "<group>"; };
+		975F3DFD168F5815BD57F81F /* Pods_HowDoesALightHouseLookHere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HowDoesALightHouseLookHere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A718F91F2178D0F200A9A9B0 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A718F9232178D11700A9A9B0 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B438422178C5410077733A /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		A7B438432178C5410077733A /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC8767A422C49F67F7111E04 /* Pods_HowDoesALightHouseLookHere.framework in Frameworks */,
+				A718F9242178D11700A9A9B0 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +53,11 @@
 		041A836C21779A6C00B2D3E8 = {
 			isa = PBXGroup;
 			children = (
+				A718F91F2178D0F200A9A9B0 /* AFNetworking.framework */,
 				041A837721779A6C00B2D3E8 /* HowDoesALightHouseLookHere */,
 				041A837621779A6C00B2D3E8 /* Products */,
+				BDFD96D68EB0A227F6CA37F6 /* Pods */,
+				CBAB9B743A1AA36EC01F48B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +85,24 @@
 			path = HowDoesALightHouseLookHere;
 			sourceTree = "<group>";
 		};
+		BDFD96D68EB0A227F6CA37F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A654D5622B368342FA4BA05 /* Pods-HowDoesALightHouseLookHere.debug.xcconfig */,
+				7E20FE5521C9A3CDB16DB44E /* Pods-HowDoesALightHouseLookHere.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CBAB9B743A1AA36EC01F48B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				975F3DFD168F5815BD57F81F /* Pods_HowDoesALightHouseLookHere.framework */,
+				A718F9232178D11700A9A9B0 /* AFNetworking.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041A838A21779A6D00B2D3E8 /* Build configuration list for PBXNativeTarget "HowDoesALightHouseLookHere" */;
 			buildPhases = (
+				E1D878A160B753EC58255E74 /* [CP] Check Pods Manifest.lock */,
 				041A837121779A6C00B2D3E8 /* Sources */,
 				041A837221779A6C00B2D3E8 /* Frameworks */,
 				041A837321779A6C00B2D3E8 /* Resources */,
+				7F1F8E355A2FE903CC4F9516 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +171,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F1F8E355A2FE903CC4F9516 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HowDoesALightHouseLookHere/Pods-HowDoesALightHouseLookHere-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HowDoesALightHouseLookHere/Pods-HowDoesALightHouseLookHere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D878A160B753EC58255E74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HowDoesALightHouseLookHere-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		041A837121779A6C00B2D3E8 /* Sources */ = {
@@ -292,10 +371,11 @@
 		};
 		041A838B21779A6D00B2D3E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A654D5622B368342FA4BA05 /* Pods-HowDoesALightHouseLookHere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LK2576GXKT;
+				DEVELOPMENT_TEAM = U64WB5YV5U;
 				INFOPLIST_FILE = HowDoesALightHouseLookHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,10 +390,11 @@
 		};
 		041A838C21779A6D00B2D3E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E20FE5521C9A3CDB16DB44E /* Pods-HowDoesALightHouseLookHere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LK2576GXKT;
+				DEVELOPMENT_TEAM = U64WB5YV5U;
 				INFOPLIST_FILE = HowDoesALightHouseLookHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
