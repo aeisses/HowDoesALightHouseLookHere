@@ -70,11 +70,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
         try data.write(to: self.worldMapURL, options: [.atomic])
     }
-    
-//    @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
-//        
 
-//    }
     // MARK: - ARSKViewDelegate
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
@@ -103,8 +99,8 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     
     @IBAction func saveWorldMapButton(_ sender: Any) {
         sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            // TODO convert the worldMap to a string
-            // TODO capture the longitude and latitude of the current location
+            let latitude = self.getCurrentCoord()?.latitude
+            let longitude = self.getCurrentCoord()?.longitude
             
 //            guard let worldMap = worldMap else {
 //                return print("error getting current world map")
@@ -127,14 +123,8 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
-    func getCurrentLatitude() {
-        let coord = locationManager.location?.coordinate
-        return coord?.latitude
-    }
-    
-    func getCurrentLongitude() {
-        let coord = locationManager.location?.coordinate
-        return coord?.longitude
+    func getCurrentCoord() -> CLLocationCoordinate2D? {
+        return locationManager.location?.coordinate
     }
     
     func initLocationManager() {
