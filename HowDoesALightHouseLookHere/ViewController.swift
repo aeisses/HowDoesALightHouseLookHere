@@ -9,9 +9,9 @@
 import UIKit
 import ARKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ARSKViewDelegate {
 
-    @IBOutlet weak var sceneView: ARSCNView!
+    @IBOutlet weak var sceneView: ARSKView!
     
     var worldMapURL: URL = {
         do {
@@ -24,8 +24,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        addBox()
+
+        // Set the view's delegate
+        sceneView.delegate = self
+
+        // Show statistics such as fps and node count
+        sceneView.showsFPS = true
+        sceneView.showsNodeCount = true
+
+        // Load the SKScene from 'Scene.sks'
+        if let scene = SKScene(fileNamed: "Scene") {
+            sceneView.presentScene(scene)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,18 +49,18 @@ class ViewController: UIViewController {
         sceneView.session.pause()
     }
     
-    func addBox() {
-        let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
-        
-        let boxNode = SCNNode()
-        boxNode.geometry = box
-        boxNode.position = SCNVector3(0, 0, -0.2)
-        
-        let scene = SCNScene()
-        scene.rootNode.addChildNode(boxNode)
-        sceneView.scene = scene
-    }
-    
+//    func addBox() {
+//        let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+//
+//        let boxNode = SCNNode()
+//        boxNode.geometry = box
+//        boxNode.position = SCNVector3(0, 0, -0.2)
+//
+//        let scene = SCNScene()
+//        scene.rootNode.addChildNode(boxNode)
+//        sceneView.scene = scene
+//    }
+
     func archive(worldMap: ARWorldMap) throws {
         let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
         try data.write(to: self.worldMapURL, options: [.atomic])
@@ -73,5 +83,31 @@ class ViewController: UIViewController {
 //            }
 //        }
 //    }
+    // MARK: - ARSKViewDelegate
+
+    func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
+        // Create and configure a node for the anchor added to the view's session.
+        let labelNode = SKLabelNode(text: "👾")
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.verticalAlignmentMode = .center
+        return labelNode;
+    }
+
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        // Present an error message to the user
+
+    }
+
+    func sessionWasInterrupted(_ session: ARSession) {
+        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+
+    }
+
+    func sessionInterruptionEnded(_ session: ARSession) {
+        // Reset tracking and/or remove existing anchors if consistent tracking is required
+
+    }
 }
+
+
 
