@@ -82,14 +82,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         
         lighthouse.size.height = scaledHeight
         lighthouse.size.width = scaledWidth
-        
-        // TODO var anchorPoint: CGPoint where pointed
-        
-        
-//        lighthouse.position = CGPoint(x: 100, y: 100)
-//        lighthouse.scale(to: CGSize(width: 150, height: 150))
-//        lighthouse.xScale = CGFloat(0.25)
-//        lighthouse.yScale = CGFloat(0.25)
+    
         return lighthouse
     }
 
