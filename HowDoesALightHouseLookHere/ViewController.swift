@@ -9,10 +9,12 @@
 import UIKit
 import ARKit
 import AFNetworking
+import CoreLocation
 
-class ViewController: UIViewController, ARSKViewDelegate {
+class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var sceneView: ARSKView!
+    var locationManager: CLLocationManager!
     
     var worldMapURL: URL = {
         do {
@@ -37,6 +39,8 @@ class ViewController: UIViewController, ARSKViewDelegate {
         if let scene = SKScene(fileNamed: "Scene") {
             sceneView.presentScene(scene)
         }
+        
+        initLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,24 +70,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
         try data.write(to: self.worldMapURL, options: [.atomic])
     }
-    
-//    @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
-//        
-//        sceneView.session.getCurrentWorldMap { (worldMap, error) in
-//            guard let worldMap = worldMap else {
-//                return self.setLabel(text: "Error getting current world map.")
-//            }
-//
-//            do {
-//                try self.archive(worldMap: worldMap)
-//                DispatchQueue.main.async {
-//                    self.setLabel(text: "World map is saved.")
-//                }
-//            } catch {
-//                fatalError("Error saving world map: \(error.localizedDescription)")
-//            }
-//        }
-//    }
+
     // MARK: - ARSKViewDelegate
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
@@ -108,6 +95,47 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
 
     }
+    
+    
+    @IBAction func saveWorldMapButton(_ sender: Any) {
+        sceneView.session.getCurrentWorldMap { (worldMap, error) in
+            let latitude = self.getCurrentCoord()?.latitude
+            let longitude = self.getCurrentCoord()?.longitude
+            
+//            guard let worldMap = worldMap else {
+//                return print("error getting current world map")
+//                return self.setLabel(text: "Error getting current world map.")
+//            }
+//
+//            do {
+//                try self.archive(worldMap: worldMap)
+//                DispatchQueue.main.async {
+//                    self.setLabel(text: "World map is saved.")
+//                }
+//            } catch {
+//                fatalError("Error saving world map: \(error.localizedDescription)")
+//            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    func getCurrentCoord() -> CLLocationCoordinate2D? {
+        return locationManager.location?.coordinate
+    }
+    
+    func initLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    
 }
 
 
