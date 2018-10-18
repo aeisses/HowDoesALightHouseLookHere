@@ -13,6 +13,15 @@ import CoreLocation
 
 class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate {
 
+    // Lighthouse selector
+    
+    
+    @IBOutlet weak var capeDor: UIImageView!
+    @IBOutlet weak var capeGeorge: UIImageView!
+    @IBOutlet weak var fortPoint: UIImageView!
+    @IBOutlet weak var louisBourgh: UIImageView!
+    @IBOutlet weak var portBickerton: UIImageView!
+    
     @IBOutlet weak var sceneView: ARSKView!
     var locationManager: CLLocationManager!
     
@@ -41,6 +50,17 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         initLocationManager()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        super.touchesEnded(touches, with: event)
+        
+        if let touch = touches.first {
+            if touch.view == self.capeDor {
+                // TODO
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
