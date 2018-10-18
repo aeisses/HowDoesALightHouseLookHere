@@ -28,6 +28,30 @@
                                     <action selector="saveWorldMapButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cks-EW-EXI"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PeggysCove" translatesAutoresizingMaskIntoConstraints="NO" id="5a2-7g-OQt">
+                                <rect key="frame" x="40" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="capedor" translatesAutoresizingMaskIntoConstraints="NO" id="Gmn-Jx-oeb">
+                                <rect key="frame" x="90" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CapeGeorge" translatesAutoresizingMaskIntoConstraints="NO" id="wxr-Tb-twv">
+                                <rect key="frame" x="140" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="portbickerton" translatesAutoresizingMaskIntoConstraints="NO" id="J6F-cc-0eQ">
+                                <rect key="frame" x="285" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fortpoint" translatesAutoresizingMaskIntoConstraints="NO" id="5xT-RJ-uQj">
+                                <rect key="frame" x="190" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Louisbourg" translatesAutoresizingMaskIntoConstraints="NO" id="WDy-Xy-s3d">
+                                <rect key="frame" x="237" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -39,6 +63,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="capeDor" destination="Gmn-Jx-oeb" id="kP2-kh-7wN"/>
+                        <outlet property="capeGeorge" destination="wxr-Tb-twv" id="UWe-hd-zMI"/>
+                        <outlet property="fortPoint" destination="5xT-RJ-uQj" id="9m2-oU-RnG"/>
+                        <outlet property="louisBourgh" destination="WDy-Xy-s3d" id="RAZ-73-l0C"/>
+                        <outlet property="portBickerton" destination="J6F-cc-0eQ" id="W50-cF-bji"/>
                         <outlet property="sceneView" destination="thZ-iw-zzJ" id="Z3a-BV-KZN"/>
                     </connections>
                 </viewController>
@@ -47,4 +76,12 @@
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CapeGeorge" width="158" height="380"/>
+        <image name="Louisbourg" width="267" height="639"/>
+        <image name="PeggysCove" width="363" height="714"/>
+        <image name="capedor" width="121" height="108"/>
+        <image name="fortpoint" width="343" height="392"/>
+        <image name="portbickerton" width="369" height="316"/>
+    </resources>
 </document>
