@@ -17,29 +17,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arskView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thZ-iw-zzJ" userLabel="Scene View">
+                            <arskView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thZ-iw-zzJ" userLabel="Scene View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arskView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjz-Nr-tzy">
-                                <rect key="frame" x="124" y="617" width="127" height="30"/>
+                                <rect key="frame" x="28" y="31" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save ARWorldMap"/>
                                 <connections>
                                     <action selector="saveWorldMapButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cks-EW-EXI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-NL-yRU">
+                                <rect key="frame" x="222" y="31" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load ARWorldMap"/>
+                                <connections>
+                                    <action selector="loadWorldMap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="twM-F8-n18"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ruz-Sm-UKf">
+                                <rect key="frame" x="45" y="69" width="285" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="Rxu-z3-DaK"/>
+                                    <constraint firstAttribute="height" constant="29" id="hkw-kG-gg8"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderValueChangedWith_sender:" destination="BYZ-38-t0r" eventType="valueChanged" id="Y0x-iD-lI4"/>
+                                </connections>
+                            </slider>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEg-zq-nfv">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="thZ-iw-zzJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ltt-L0-GbI"/>
-                            <constraint firstItem="thZ-iw-zzJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="f8i-FT-FHh"/>
-                            <constraint firstItem="thZ-iw-zzJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fNl-0M-G76"/>
-                            <constraint firstItem="thZ-iw-zzJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wq9-qU-VRr"/>
+                            <constraint firstItem="Ruz-Sm-UKf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="69" id="n58-IV-g67"/>
+                            <constraint firstItem="Ruz-Sm-UKf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ocg-7z-8Bc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lightHousePicker" destination="eEg-zq-nfv" id="vFj-N1-4vz"/>
                         <outlet property="sceneView" destination="thZ-iw-zzJ" id="Z3a-BV-KZN"/>
+                        <outlet property="slider" destination="Ruz-Sm-UKf" id="uXz-rg-ALn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

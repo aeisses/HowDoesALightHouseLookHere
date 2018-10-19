@@ -12,9 +12,17 @@ import AFNetworking
 import CoreLocation
 import Network
 
-class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var sceneView: ARSKView!
+    @IBOutlet weak var lightHouseSwitchButton: UIButton!
+    
+    @IBOutlet weak var lightHousePicker: UIPickerView!
+    
+    var pickerData: [String] = [String]()
+    var pickerValue: String = "PeggysCove"
+    
     var locationManager: CLLocationManager!
     
     var worldMapURL: URL = {
@@ -25,6 +33,16 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             fatalError("Error getting world map URL from document directory.")
         }
     }()
+    
+    @IBAction func sliderValueChanged( _sender: UISlider) {
+        if let scene = sceneView.scene as? Scene {
+            scene.offSet = Float(_sender.value)
+        }
+    }
+    
+    @IBAction func changeLightHouse( _sender: UIButton) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +60,11 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         initLocationManager()
+        
+        self.lightHousePicker.delegate = self;
+        self.lightHousePicker.dataSource = self;
+        
+        pickerData = ["PeggysCove", "capedor", "CapeGeorge", "fortpoint", "Louisbourg", "portbickerton"]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,27 +98,34 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     // MARK: - ARSKViewDelegate
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        // Create and configure a node for the anchor added to the view's session.
-        let labelNode = SKLabelNode(text: "👾")
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        return labelNode;
+        let lighthouse = SKSpriteNode(imageNamed: pickerValue)
+        
+        let scaledHeight = lighthouse.size.height * 0.20
+        let scaledWidth = lighthouse.size.width * 0.20
+        
+        lighthouse.size.height = scaledHeight
+        lighthouse.size.width = scaledWidth
+    
+        return lighthouse
     }
 
     func session(_ session: ARSession, didFailWithError error: Error) {}
     func sessionWasInterrupted(_ session: ARSession) {}
     func sessionInterruptionEnded(_ session: ARSession) {}
     
+    @IBAction func loadWorldMap(_ sender: Any) {
+        
+    }
+    
     @IBAction func saveWorldMapButton(_ sender: Any) {
         sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            // FIXME handle nil values
             let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
             let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
             var worldMapString: String?
             let networkObject = Network()
             do {
                 // FIXME lots of unsafe nils here
-                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
+                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
                 let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
                 networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
@@ -149,5 +179,24 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
 //        static func fromJson() -> SavedLighthouse {
 //            // TODO
 //        }
+    }
+    
+    // Number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerValue = pickerData[row]
     }
 }
