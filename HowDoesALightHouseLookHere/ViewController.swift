@@ -55,6 +55,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         sceneView.showsFPS = true
         sceneView.showsNodeCount = true
 
+
         // Load the SKScene from 'Scene.sks'
         if let scene = SKScene(fileNamed: "Scene") {
             sceneView.presentScene(scene)
@@ -128,6 +129,9 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
             var worldMapString: String?
             do {
+                let snapshotAnchor = SnapshotAnchor(capturing: self.sceneView)
+                worldMap?.anchors.append(snapshotAnchor!)
+            
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
@@ -153,7 +157,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             print("Move camera around to map your surrounding space.")
         }
         
-//        sceneView.debugOptions = [.showFeaturePoints]
         sceneView.session.run(configuration, options: options)
     }
     
