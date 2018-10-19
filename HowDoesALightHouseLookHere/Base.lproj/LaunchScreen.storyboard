@@ -17,12 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Peggys-Cove-Sunset-NovaScotia-2016" translatesAutoresizingMaskIntoConstraints="NO" id="Fft-yI-759">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Peggys-Cove-Sunset-NovaScotia-2016" translatesAutoresizingMaskIntoConstraints="NO" id="Fft-yI-759">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Fft-yI-759" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="J31-Dx-qZc"/>
+                            <constraint firstItem="Fft-yI-759" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Mtz-D4-sjq"/>
+                            <constraint firstItem="Fft-yI-759" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tof-9r-1nR"/>
+                            <constraint firstItem="Fft-yI-759" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xMt-2Z-68m"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
