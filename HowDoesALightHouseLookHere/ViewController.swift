@@ -16,7 +16,9 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
 
     @IBOutlet weak var sceneView: ARSKView!
     var locationManager: CLLocationManager!
-    
+    let networkObject = Network()
+    var lightHouseArray = NSArray()
+
     var worldMapURL: URL = {
         do {
             return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -42,6 +44,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         initLocationManager()
+        lightHouseArray = networkObject.getDataFromServer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +104,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
-                let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+                let lighthouseToSave = Lighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
                 networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
 
             } catch {
@@ -128,30 +131,5 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     }
     
     // Represents a saved LightHouse either being saved or fetched
-    class SavedLighthouse {
-        var longitude: Double
-        var latitude: Double
-        var worldMap: String
-        
-        init(longitude: Double, latitude: Double, worldMap: String) {
-            self.longitude = longitude
-            self.latitude = latitude
-            self.worldMap = worldMap
-        }
-        
-        // Converts a lighthouse into a JSON object for the server
-        func toMap() -> NSDictionary {
-            let mapObject: NSDictionary = [
-                "latitude" : self.latitude,
-                "longitude" : self.longitude,
-                "worldMap" : worldMap
-            ]
-            return mapObject
-        }
-        
-        // Converts fetched JSON from the server into a SavedLightHouse instance
-//        static func fromJson() -> SavedLighthouse {
-//            // TODO
-//        }
-    }
+    
 }

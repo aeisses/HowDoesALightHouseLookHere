@@ -15,6 +15,7 @@
 		041A838621779A6D00B2D3E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041A838421779A6D00B2D3E8 /* LaunchScreen.storyboard */; };
 		A718F9242178D11700A9A9B0 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A718F9232178D11700A9A9B0 /* AFNetworking.framework */; };
 		A718F92A2179025300A9A9B0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A718F9292179024A00A9A9B0 /* Network.swift */; };
+		A718F92C217A084400A9A9B0 /* LightHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A718F92B217A084400A9A9B0 /* LightHouse.swift */; };
 		A7B438442178C5410077733A /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B438422178C5410077733A /* Scene.swift */; };
 		A7B438452178C5410077733A /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7B438432178C5410077733A /* Scene.sks */; };
 		BC8767A422C49F67F7111E04 /* Pods_HowDoesALightHouseLookHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975F3DFD168F5815BD57F81F /* Pods_HowDoesALightHouseLookHere.framework */; };
@@ -35,6 +36,7 @@
 		A718F91F2178D0F200A9A9B0 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A718F9232178D11700A9A9B0 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A718F9292179024A00A9A9B0 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		A718F92B217A084400A9A9B0 /* LightHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightHouse.swift; sourceTree = "<group>"; };
 		A7B438422178C5410077733A /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		A7B438432178C5410077733A /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				041A838421779A6D00B2D3E8 /* LaunchScreen.storyboard */,
 				041A838721779A6D00B2D3E8 /* Info.plist */,
 				041A837F21779A6C00B2D3E8 /* HowDoesALightHouseLookHere.xcdatamodeld */,
+				A718F92B217A084400A9A9B0 /* LightHouse.swift */,
 			);
 			path = HowDoesALightHouseLookHere;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				A718F92A2179025300A9A9B0 /* Network.swift in Sources */,
 				A7B438442178C5410077733A /* Scene.swift in Sources */,
 				041A838121779A6C00B2D3E8 /* HowDoesALightHouseLookHere.xcdatamodeld in Sources */,
+				A718F92C217A084400A9A9B0 /* LightHouse.swift in Sources */,
 				041A837B21779A6C00B2D3E8 /* ViewController.swift in Sources */,
 				041A837921779A6C00B2D3E8 /* AppDelegate.swift in Sources */,
 			);
