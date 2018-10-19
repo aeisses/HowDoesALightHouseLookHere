@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "CapeGeorge.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CapeGeorge.png",
       "scale" : "2x"
     },
     {

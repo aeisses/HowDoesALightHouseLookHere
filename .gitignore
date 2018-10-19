@@ -54,6 +54,8 @@ playground.xcworkspace
 # Carthage/Checkouts
 
 Carthage/Build
+Updates
+Podfile.lock
 
 # fastlane
 #
