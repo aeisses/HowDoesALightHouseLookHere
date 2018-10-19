@@ -114,6 +114,9 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     func sessionInterruptionEnded(_ session: ARSession) {}
     
     @IBAction func loadWorldMap(_ sender: Any) {
+        networkObject.getDataFromServer { (Array, Error) in
+            print(Array)
+        }
         
     }
     
