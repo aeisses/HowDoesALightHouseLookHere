@@ -116,28 +116,31 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     @IBAction func loadWorldMap(_ sender: Any) {
         networkObject.getDataFromServer { (Array, Error) in
             let info = Array?.first as! Lighthouse
-            let data = Data(base64Encoded: info.worldMap, options: .ignoreUnknownCharacters)
+            let data = Data(base64Encoded: info.worldMap, options: [])
             let worldMap = self.unarchive(worldMapData: data!)
             self.resetTrackingConfiguration(with: worldMap)
         }
     }
     
     @IBAction func saveWorldMapButton(_ sender: Any) {
-        sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
-            let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
-            var worldMapString: String?
-            do {
-                // FIXME lots of unsafe nils here
-                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
-                worldMapString = data.base64EncodedString()
-                let lighthouseToSave = Lighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
-                self.networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
+        if( sceneView.session.currentFrame?.worldMappingStatus == .mapped || sceneView.session.currentFrame?.worldMappingStatus == .extending) {
+            sceneView.session.getCurrentWorldMap { (worldMap, error) in
+                let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
+                let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
+                var worldMapString: String?
+                do {
+                    // FIXME lots of unsafe nils here
+                    let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
+                    worldMapString = data.base64EncodedString()
+                    let lighthouseToSave = Lighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+                    self.networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
 
-            } catch {
-                // FIXME handle this
+                } catch {
+                    // FIXME handle this
+                }
             }
         }
+
     }
     
 
