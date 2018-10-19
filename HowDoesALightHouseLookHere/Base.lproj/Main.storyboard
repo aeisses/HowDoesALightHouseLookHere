@@ -69,6 +69,7 @@
                     </view>
                     <connections>
                         <outlet property="lightHousePicker" destination="eEg-zq-nfv" id="vFj-N1-4vz"/>
+                        <outlet property="saveMapButton" destination="Fjz-Nr-tzy" id="y2O-TZ-7R8"/>
                         <outlet property="sceneView" destination="thZ-iw-zzJ" id="Z3a-BV-KZN"/>
                         <outlet property="slider" destination="Ruz-Sm-UKf" id="uXz-rg-ALn"/>
                     </connections>
