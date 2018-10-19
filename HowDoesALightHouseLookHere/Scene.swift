@@ -12,7 +12,8 @@ import ARKit
 class Scene: SKScene {
     
     var offSet : Float = 0
-    
+    var virtualObjectAnchor: ARAnchor?
+
     override func didMove(to view: SKView) {
         // Setup your scene here
     }
@@ -22,28 +23,33 @@ class Scene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        var position : CGPoint
-//        if let touch = touches.first {
-//             position = touch.location(in: view)
-//        } else {
-//            position = CGPoint(x: 0, y: 0)
-//        }
-        
         guard let sceneView = self.view as? ARSKView else {
             return
         }
         
-        // Create anchor using the camera's current position
-        if let currentFrame = sceneView.session.currentFrame {
-            
-            // Create a transform with a translation of 0.2 meters in front of the camera
-            var translation = matrix_identity_float4x4
-            translation.columns.3.z = -offSet-1.0
-            let transform = simd_mul(currentFrame.camera.transform, translation)
-            
-            // Add a new anchor to the session
-            let anchor = ARAnchor(transform: transform)
-            sceneView.session.add(anchor: anchor)
+        if let touch = touches.first {
+             position = touch.location(in: view)
+            guard let hitTestResult = sceneView
+                .hitTest(touch.location(in: sceneView), types: [.existingPlaneUsingGeometry, .estimatedHorizontalPlane])
+                .first
+                else { return }
+        
+            // Create anchor using the camera's current position
+//            if let currentFrame = sceneView.session.currentFrame {
+                
+                // Create a transform with a translation of 0.2 meters in front of the camera
+    //            var translation = matrix_identity_float4x4
+    //            translation.columns.3.z = -offSet-1.0
+    //            let transform = simd_mul(currentFrame.camera.transform, translation)
+                
+                if let existingAnchor = virtualObjectAnchor {
+                    sceneView.session.remove(anchor: existingAnchor)
+                }
+                
+                // Add a new anchor to the session
+                virtualObjectAnchor = ARAnchor(name: "virtualObject", transform: hitTestResult.worldTransform)
+                sceneView.session.add(anchor: virtualObjectAnchor!)
+//            }
         }
     }
 }

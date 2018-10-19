@@ -12,7 +12,7 @@ import AFNetworking
 import CoreLocation
 import Network
 
-class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, ARSessionDelegate {
 
     @IBOutlet weak var saveMapButton: UIButton!
     @IBOutlet weak var slider: UISlider!
@@ -72,6 +72,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        sceneView.session.delegate = self;
         let configuration = ARWorldTrackingConfiguration();
         sceneView.session.run(configuration)
     }
@@ -102,6 +103,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         let lighthouse = SKSpriteNode(imageNamed: pickerValue)
+        lighthouse.name = pickerValue
         
         let scaledHeight = lighthouse.size.height * 0.20
         let scaledWidth = lighthouse.size.width * 0.20
@@ -113,10 +115,16 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     }
 
     func view(_ view: ARSKView, didAdd node: SKNode, for anchor: ARAnchor) {
-        if( sceneView.session.currentFrame?.worldMappingStatus == .mapped || sceneView.session.currentFrame?.worldMappingStatus == .extending) {
-            self.saveMapButton.isEnabled = true
-        } else {
-            self.saveMapButton.isEnabled = false
+        
+        guard anchor.name == "virtualObject"
+            else { return }
+        
+        // save the reference to the virtual object anchor when the anchor is added from relocalizing
+        if let scene = sceneView.scene as? Scene {
+            if scene.virtualObjectAnchor == nil {
+                scene.virtualObjectAnchor = anchor
+            }
+//             node.addChildNode(virtualObject)
         }
     }
 
@@ -154,7 +162,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
 
     }
-    
 
     func resetTrackingConfiguration(with worldMap: ARWorldMap? = nil) {
         let configuration = ARWorldTrackingConfiguration()
@@ -240,4 +247,17 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerValue = pickerData[row]
     }
+    
+    /// - Tag: CheckMappingStatus
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // Enable Save button only when the mapping status is good and an object has been placed
+        switch frame.worldMappingStatus {
+        case .extending, .mapped:
+            self.saveMapButton.isEnabled = true
+                //virtualObjectAnchor != nil && frame.anchors.contains(virtualObjectAnchor!)
+        default:
+            self.saveMapButton.isEnabled = false
+        }
+    }
+
 }
