@@ -10,6 +10,7 @@ import UIKit
 import ARKit
 import AFNetworking
 import CoreLocation
+import Network
 
 class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -121,12 +122,14 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             let latitude: CLLocationDegrees = self.getCurrentCoord()?.latitude ?? 0
             let longitude: CLLocationDegrees = self.getCurrentCoord()?.longitude ?? 0
             var worldMapString: String?
-            
+            let networkObject = Network()
             do {
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
-                _ = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+                let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+                networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
+
             } catch {
                 // FIXME handle this
             }
@@ -163,21 +166,13 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         // Converts a lighthouse into a JSON object for the server
-        func toJson() -> [String: Any] {
-            let jsonObject: [String: Any] = [
+        func toMap() -> NSDictionary {
+            let mapObject: NSDictionary = [
                 "latitude" : self.latitude,
                 "longitude" : self.longitude,
                 "worldMap" : worldMap
             ]
-            
-            let valid = JSONSerialization.isValidJSONObject(jsonObject)
-            
-            if (valid) {
-                return jsonObject
-            } else {
-                // FIXME handle this
-                return ["": ""]
-            }
+            return mapObject
         }
         
         // Converts fetched JSON from the server into a SavedLightHouse instance
