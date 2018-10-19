@@ -14,6 +14,7 @@ import Network
 
 class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var saveMapButton: UIButton!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var sceneView: ARSKView!
     @IBOutlet weak var lightHouseSwitchButton: UIButton!
@@ -64,7 +65,8 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         initLocationManager()
         self.lightHousePicker.delegate = self;
         self.lightHousePicker.dataSource = self;
-        
+        self.saveMapButton.isEnabled = false
+
         pickerData = ["PeggysCove", "capedor", "CapeGeorge", "fortpoint", "Louisbourg", "portbickerton"]
     }
     
@@ -110,6 +112,14 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         return lighthouse
     }
 
+    func view(_ view: ARSKView, didAdd node: SKNode, for anchor: ARAnchor) {
+        if( sceneView.session.currentFrame?.worldMappingStatus == .mapped || sceneView.session.currentFrame?.worldMappingStatus == .extending) {
+            self.saveMapButton.isEnabled = true
+        } else {
+            self.saveMapButton.isEnabled = false
+        }
+    }
+
     func session(_ session: ARSession, didFailWithError error: Error) {}
     func sessionWasInterrupted(_ session: ARSession) {}
     func sessionInterruptionEnded(_ session: ARSession) {}
@@ -131,7 +141,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
             do {
                 let snapshotAnchor = SnapshotAnchor(capturing: self.sceneView)
                 worldMap?.anchors.append(snapshotAnchor!)
-            
+
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
@@ -142,6 +152,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
                 // FIXME handle this
             }
         }
+
     }
     
 
