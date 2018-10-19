@@ -25,14 +25,14 @@ class Network: NSObject {
         })
     }
     
-    func getDataFromServer() -> NSArray {
-        var lightHouseArray = NSMutableArray()
+    func getDataFromServer() {
         let manager = AFHTTPSessionManager()
         manager.get(serverURL, parameters: nil, progress: nil, success: { (URLSessionDataTask, responseObject) in
             print("success")
+            let lightHouseArray = NSMutableArray()
             if let array = responseObject as? Array<Dictionary<String, Any>> {
                 for item in array {
-                    var lightHouse = Lighthouse(longitude: item["longitude"] as! Double, latitude: item["latitude"] as!Double, worldMap: item["worldMap"] as! String)
+                    let lightHouse = Lighthouse(longitude: item["longitude"] as! Double, latitude: item["latitude"] as!Double, worldMap: item["worldMap"] as! String)
                     lightHouseArray.add(lightHouse)
                 }
                 print(lightHouseArray)
@@ -41,7 +41,6 @@ class Network: NSObject {
         }) { (URLSessionDataTask, Error) in
             print("failure")
         }
-        return lightHouseArray as NSArray
     }
 
 }

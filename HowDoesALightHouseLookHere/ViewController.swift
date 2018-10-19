@@ -25,7 +25,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     
     var locationManager: CLLocationManager!
     let networkObject = Network()
-    var lightHouseArray = NSArray()
 
     var worldMapURL: URL = {
         do {
@@ -62,7 +61,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         initLocationManager()
-        lightHouseArray = networkObject.getDataFromServer()
         self.lightHousePicker.delegate = self;
         self.lightHousePicker.dataSource = self;
         
