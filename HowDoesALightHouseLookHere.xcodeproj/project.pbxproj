@@ -375,7 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U64WB5YV5U;
+				DEVELOPMENT_TEAM = LK2576GXKT;
 				INFOPLIST_FILE = HowDoesALightHouseLookHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -394,7 +394,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U64WB5YV5U;
+				DEVELOPMENT_TEAM = LK2576GXKT;
 				INFOPLIST_FILE = HowDoesALightHouseLookHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -20,26 +20,83 @@
                             <arskView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thZ-iw-zzJ" userLabel="Scene View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arskView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRi-mW-9fk">
+                                <rect key="frame" x="333" y="609" width="29" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="JRd-zc-PDS"/>
+                                    <constraint firstAttribute="width" constant="29" id="hUS-aS-BXG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjz-Nr-tzy">
-                                <rect key="frame" x="124" y="617" width="127" height="30"/>
+                                <rect key="frame" x="28" y="31" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save ARWorldMap"/>
                                 <connections>
                                     <action selector="saveWorldMapButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cks-EW-EXI"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ruz-Sm-UKf">
+                                <rect key="frame" x="45" y="605" width="285" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="Rxu-z3-DaK"/>
+                                    <constraint firstAttribute="height" constant="29" id="hkw-kG-gg8"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderValueChangedWith_sender:" destination="BYZ-38-t0r" eventType="valueChanged" id="Y0x-iD-lI4"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qX7-Gx-HFq">
+                                <rect key="frame" x="16" y="609" width="14" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="W66-Y9-24C"/>
+                                    <constraint firstAttribute="height" constant="21" id="olW-yN-4qd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Away" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwR-hz-a5c">
+                                <rect key="frame" x="131.5" y="642" width="112" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="9Tg-TJ-JGA"/>
+                                    <constraint firstAttribute="height" constant="21" id="AgI-3U-s1D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-NL-yRU">
+                                <rect key="frame" x="222" y="31" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load ARWorldMap"/>
+                                <connections>
+                                    <action selector="loadWorldMap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="twM-F8-n18"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vwR-hz-a5c" firstAttribute="top" secondItem="Ruz-Sm-UKf" secondAttribute="bottom" constant="8" id="2b1-Fu-bhs"/>
+                            <constraint firstItem="XRi-mW-9fk" firstAttribute="leading" secondItem="Ruz-Sm-UKf" secondAttribute="trailing" constant="5" id="4Nf-ym-5pI"/>
+                            <constraint firstItem="Ruz-Sm-UKf" firstAttribute="leading" secondItem="qX7-Gx-HFq" secondAttribute="trailing" constant="17" id="8kT-Jp-0Dn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XRi-mW-9fk" secondAttribute="bottom" constant="37" id="BeC-u0-OsV"/>
                             <constraint firstItem="thZ-iw-zzJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ltt-L0-GbI"/>
+                            <constraint firstItem="vwR-hz-a5c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QxV-0N-vOP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qX7-Gx-HFq" secondAttribute="bottom" constant="37" id="ezj-ik-5yb"/>
                             <constraint firstItem="thZ-iw-zzJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="f8i-FT-FHh"/>
                             <constraint firstItem="thZ-iw-zzJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fNl-0M-G76"/>
+                            <constraint firstItem="Ruz-Sm-UKf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m4Q-6U-7BA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vwR-hz-a5c" secondAttribute="bottom" constant="4" id="v7f-3W-Oqf"/>
                             <constraint firstItem="thZ-iw-zzJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wq9-qU-VRr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="sceneView" destination="thZ-iw-zzJ" id="Z3a-BV-KZN"/>
+                        <outlet property="slider" destination="Ruz-Sm-UKf" id="uXz-rg-ALn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
