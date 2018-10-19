@@ -24,7 +24,8 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
     var pickerValue: String = "PeggysCove"
     
     var locationManager: CLLocationManager!
-    
+    let networkObject = Network()
+
     var worldMapURL: URL = {
         do {
             return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -60,7 +61,6 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
         }
         
         initLocationManager()
-        
         self.lightHousePicker.delegate = self;
         self.lightHousePicker.dataSource = self;
         
@@ -127,7 +127,7 @@ class ViewController: UIViewController, ARSKViewDelegate, CLLocationManagerDeleg
                 // FIXME lots of unsafe nils here
                 let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap as Any, requiringSecureCoding: true)
                 worldMapString = data.base64EncodedString()
-                let lighthouseToSave = SavedLighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
+                let lighthouseToSave = Lighthouse(longitude: longitude as Double, latitude: latitude as Double, worldMap: worldMapString!)
                 networkObject.sendDataToServer(_mapObject:lighthouseToSave.toMap())
 
             } catch {
